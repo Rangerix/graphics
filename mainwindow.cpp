@@ -169,6 +169,7 @@ void MainWindow::on_pushButton_clicked()
         }
     }
     ui->frame->setPixmap(QPixmap::fromImage(img));
+    polygonindex=0;
 }
 
 
@@ -416,7 +417,7 @@ void MainWindow::on_transform_clicked()
 {
     int sx=ui->displace_x->value();
     int sy=ui->displace_y->value();
-    int i;
+    int i=0;
     polygon[0][0]+=sx;
     polygon[0][1]+=sy;
 
@@ -426,3 +427,33 @@ void MainWindow::on_transform_clicked()
         drawbresenham(polygon[i][0],polygon[i][1],polygon[i-1][0],polygon[i-1][1]);
     }
 }
+
+void MainWindow::on_set_pivot_clicked()
+{
+    p3.setX(ui->frame->x);
+    p3.setY(ui->frame->y);
+}
+void MainWindow::on_rotation_clicked()
+{
+    qreal theta=ui->rotate_angle->value();
+    theta=(theta*M_PI/180);
+    int i=0;
+    int tx,ty;
+
+    int xr=getx(p3.x());
+    int yr=gety(p3.y());
+
+    tx=polygon[i][0];
+    ty=polygon[i][1];
+    polygon[i][0]=tx*cos(theta)-ty*sin(theta)+xr*(1-cos(theta))+yr*sin(theta);
+    polygon[i][1]=ty*cos(theta)+tx*sin(theta)+yr*(1-cos(theta))-xr*sin(theta);
+
+    for(i=1;i<polygonindex;i++){
+        tx=polygon[i][0];
+        ty=polygon[i][1];
+        polygon[i][0]=tx*cos(theta)-ty*sin(theta)+xr*(1-cos(theta))+yr*sin(theta);
+        polygon[i][1]=ty*cos(theta)+tx*sin(theta)+yr*(1-cos(theta))-xr*sin(theta);
+        drawbresenham(polygon[i][0],polygon[i][1],polygon[i-1][0],polygon[i-1][1]);
+    }
+}
+

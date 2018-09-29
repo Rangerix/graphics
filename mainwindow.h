@@ -52,6 +52,10 @@ private slots:
 
     void on_transform_clicked();
 
+    void on_rotation_clicked();
+
+    void on_set_pivot_clicked();
+
 private:
     Ui::MainWindow *ui;
     QPoint p1,p2,p3;
