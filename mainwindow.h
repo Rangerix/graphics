@@ -42,11 +42,11 @@ private slots:
     void on_midpoint_circle_clicked();
 
     void mysetpixel(int,int,int,int,int);
-    void circleplotpoint(int,int,int,int);
+    void circleplotpoint(int,int,int,int,int,int,int);
 
 
     void on_bresenham_clicked();
-    void drawbresenham(int ,int ,int ,int);
+    void drawbresenham(int ,int ,int ,int,int,int,int);
 
     void on_polygon_clicked();
 
@@ -56,9 +56,46 @@ private slots:
 
     void on_set_pivot_clicked();
 
+    void on_reflection_clicked();
+
+    void on_scale_clicked();
+
+    void on_minwin_clicked();
+
+    void on_maxwin_clicked();
+
+    void on_draw_window_clicked();
+
+    void on_clipline_clicked();
+
+    void on_clear_polygon_clicked();
+
+    void on_clip_pol_clicked();
+
+    void on_beizer_clicked();
+
+    void on_scan_fill_clicked();
+    void ScanlineFill();
+    void drawPolyDino();
+
+
+    void on_boundary_fill_clicked();
+    void boundary_fill_util(int,int,QRgb,int, int,int);
+
+    void on_flood_fill_clicked();
+    void flood_fill_util(int,int,QRgb,int, int,int);
+
+    void on_bresenham_circle_clicked();
+
+    void on_draw_ellipse_clicked();
+    void ellipseplotpoint(int ,int,int,int,int,int,int);
+    void on_ellipse_center_clicked();
+
+    void on_shear_clicked();
+
 private:
     Ui::MainWindow *ui;
-    QPoint p1,p2,p3;
+    QPoint p1,p2,p3,p4,wmin,wmax;
     void point(int,int);
 };
 
